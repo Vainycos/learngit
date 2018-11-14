@@ -1,0 +1,69 @@
+git常规操作
+
+1.仓库初始化
+	$git init
+
+2.提交文件
+	$git add x.x   (x.x是文件名)
+	$git commit -m "message"  (message是你提交本次内容的说明文字)
+	
+3.查看提交日志
+	$git log	(会输出多行提交历史详细信息)
+	$git log --pretty=oneline	(只显示单行提交信息)
+	
+4.回退版本
+	$git reset --hard HEAD^		(表示回退上一个版本，最后的^表示上个版本，如果是两个^就表示上上个版本，以此类推)
+	
+5.查看git操作日志(包括回滚的日志)
+	$git reflog
+	
+6.直接在bash中查看文件内容
+	$cat x.x	(x.x是文件名)
+	
+	
+	
+回退操作
+	1.只执行了add操作，修改只是添加到了暂存区
+		$git reset HEAD *.*		(*.*是一个文件名，将版本指针放到上一次commit)
+		$git checkout -- *.*	(*.*是一个文件名，将你的本地修改作废)
+		
+		
+克隆远程服务器仓库到本地
+	$git clone git@github.com:aZYiming/learngit.git	(aZYiming是个人GitHub账号名，learngit是仓库名) --- 该种方式默认使用的是ssh传输协议
+	
+与远程仓库建立联系
+	$git remote add origin git@github.com:aZYiming/learngit.git	(aZYiming是个人GitHub账号名，learngit是仓库名)
+	
+将本地文件推送到远程仓库
+	$git push -u origin master	
+	(-u参数的作用： Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令)
+	之后就可以用 $git push origin master 来提交远程版本库
+	
+	
+	
+*************************************************************************************
+进阶操作：分支操作
+	创建/切换分支
+		$git checkout -b dev	(表示两步操作，创建dev分支，并切换到dev分支) $git branch dev/$git checkout dev
+	
+	查看分支信息
+		$git branch
+		
+		例如当你处在dev分支下，进行add/commit操作，只能在dev分支下看到更改，而当你切换到master分支下是看不到更改。
+		
+	分支合并操作
+		首先将当前分支切换成master 	$git checkout master
+		进行合并命令				$git merge dev
+		
+	删除分支
+		$git branch -d dev
+		
+
+
+
+
+
+
+
+
+
